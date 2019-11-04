@@ -13,9 +13,10 @@ namespace Products.Data.SqlServer.Configurations
             product.Property(p => p.Title).HasMaxLength(300);
             product.Property(p => p.Description).HasMaxLength(300);
             product.Property(p => p.Title).HasMaxLength(300);
+            product.Property(p => p.Price).HasColumnType("decimal(18,2)");
 
             product.HasOne(p => p.Category).WithMany(p => p.Products).HasForeignKey(p => p.CategoryId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

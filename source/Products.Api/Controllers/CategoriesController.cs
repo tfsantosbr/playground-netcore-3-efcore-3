@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using Products.Data.SqlServer.Context;
 using Products.Domain.Categories;
 using Products.Domain.Categories.Models;
@@ -26,11 +23,7 @@ namespace Products.Api.Controllers
         public async Task<IActionResult> GetCategories()
         {
             var categories = await _categories
-                .Select(c => new CategoryItem
-                {
-                    Id = c.Id,
-                    Title = c.Title
-                })
+                .Select(c => new CategoryItem { Id = c.Id, Title = c.Title })
                 .ToListAsync();
 
             return Ok(categories);

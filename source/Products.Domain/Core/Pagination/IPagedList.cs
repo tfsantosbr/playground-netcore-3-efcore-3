@@ -1,4 +1,4 @@
-namespace Products.Domain.Core
+namespace Products.Domain.Core.Pagination
 {
     public interface IPagedList<T>
     {

@@ -11,8 +11,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Products.Data.Persistence;
 using Products.Data.SqlServer.Context;
 using Products.Data.SqlServer.Repositories;
+using Products.Domain.Core.Persistence;
+using Products.Domain.Products.Handlers;
 using Products.Domain.Products.Repositories;
 
 namespace Products.Api
@@ -26,7 +29,6 @@ namespace Products.Api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
@@ -34,10 +36,13 @@ namespace Products.Api
             services.AddDbContext<ProductsContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("SqlServerDb")));
 
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             services.AddScoped<IProductRepository, ProductRepository>();
+
+            services.AddScoped<ProductCommandsHandler>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

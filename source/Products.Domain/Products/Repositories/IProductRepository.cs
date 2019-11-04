@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using Products.Domain.Core;
+using Products.Domain.Core.Pagination;
 using Products.Domain.Products.Models;
 
 namespace Products.Domain.Products.Repositories

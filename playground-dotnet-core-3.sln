@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "source", "source", "{16EEDC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Products.Domain", "source\Products.Domain\Products.Domain.csproj", "{DA43BD33-314B-49E4-A450-5D89AB5607A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Products.Data.SqlServer", "source\Products.Data.SqlServer\Products.Data.SqlServer.csproj", "{ED6083A8-7060-473F-AB84-BC8B279492CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Products.Data.SqlServer", "source\Products.Data\Products.Data.csproj", "{ED6083A8-7060-473F-AB84-BC8B279492CD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Products.Api", "source\Products.Api\Products.Api.csproj", "{246536EE-D968-4C9C-B453-BE2BE750880B}"
 EndProject

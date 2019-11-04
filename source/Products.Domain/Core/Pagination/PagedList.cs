@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Products.Domain.Products;
 using Products.Domain.Products.Models;
 
-namespace Products.Domain.Core
+namespace Products.Domain.Core.Pagination
 {
     public class PagedList<TItem> : List<TItem>, IPagedList<TItem>
     {

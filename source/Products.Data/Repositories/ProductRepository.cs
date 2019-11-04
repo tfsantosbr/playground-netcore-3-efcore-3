@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Products.Data.SqlServer.Context;
-using Products.Domain.Core;
+using Products.Domain.Core.Pagination;
 using Products.Domain.Products;
 using Products.Domain.Products.Models;
 using Products.Domain.Products.Repositories;

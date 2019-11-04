@@ -3,18 +3,21 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Products.Data.SqlServer.Context;
 
 namespace Products.Data.SqlServer.Migrations
 {
     [DbContext(typeof(ProductsContext))]
-    partial class ProductsContextModelSnapshot : ModelSnapshot
+    [Migration("20191104144425_201911041144")]
+    partial class _201911041144
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("Products")
                 .HasAnnotation("ProductVersion", "3.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -47,11 +50,6 @@ namespace Products.Data.SqlServer.Migrations
                         },
                         new
                         {
-                            Id = 3,
-                            Title = "Notebooks"
-                        },
-                        new
-                        {
                             Id = 4,
                             Title = "Books"
                         },
@@ -59,6 +57,21 @@ namespace Products.Data.SqlServer.Migrations
                         {
                             Id = 5,
                             Title = "Games"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Title = "Audio"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Title = "Video"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Title = "Kids"
                         });
                 });
 
@@ -94,7 +107,7 @@ namespace Products.Data.SqlServer.Migrations
                     b.HasOne("Products.Domain.Categories.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

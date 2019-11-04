@@ -20,5 +20,13 @@ namespace Products.Domain.Products
         public int CategoryId { get; private set; }
 
         public Category Category { get; private set; }
+
+        public void Update(string title, string description, decimal price, int categoryId)
+        {
+            Title = title;
+            Description = description;
+            Price = price;
+            CategoryId = categoryId;
+        }
     }
 }
