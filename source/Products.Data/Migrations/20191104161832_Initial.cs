@@ -1,18 +1,23 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
-namespace Products.Data.SqlServer.Migrations
+namespace Products.Data.Migrations
 {
     public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "Products");
+
             migrationBuilder.CreateTable(
                 name: "Categories",
+                schema: "Products",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Title = table.Column<string>(maxLength: 300, nullable: true)
                 },
                 constraints: table =>
@@ -22,12 +27,13 @@ namespace Products.Data.SqlServer.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Products",
+                schema: "Products",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Title = table.Column<string>(maxLength: 300, nullable: true),
                     Description = table.Column<string>(maxLength: 300, nullable: true),
-                    Price = table.Column<decimal>(nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CategoryId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -36,25 +42,29 @@ namespace Products.Data.SqlServer.Migrations
                     table.ForeignKey(
                         name: "FK_Products_Categories_CategoryId",
                         column: x => x.CategoryId,
+                        principalSchema: "Products",
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.InsertData(
+                schema: "Products",
                 table: "Categories",
                 columns: new[] { "Id", "Title" },
                 values: new object[,]
                 {
                     { 1, "Cell Phones" },
                     { 2, "TVs" },
-                    { 3, "Notebooks" },
                     { 4, "Books" },
-                    { 5, "Games" }
+                    { 6, "Audio" },
+                    { 7, "Video" },
+                    { 8, "Kids" }
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_CategoryId",
+                schema: "Products",
                 table: "Products",
                 column: "CategoryId");
         }
@@ -62,10 +72,12 @@ namespace Products.Data.SqlServer.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "Products",
+                schema: "Products");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "Categories",
+                schema: "Products");
         }
     }
 }

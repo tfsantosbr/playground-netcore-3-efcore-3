@@ -34,7 +34,7 @@ namespace Products.Api
             services.AddControllers();
 
             services.AddDbContext<ProductsContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("SqlServerDb")));
+                options.UseNpgsql(Configuration.GetConnectionString("PostgresDb")));
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
